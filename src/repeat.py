@@ -9,7 +9,7 @@ from utils.config import config
 def spam(arg):
     real_dir_path = os.path.realpath(os.path.dirname(__file__))
 
-    subprocess.run(['pythonw', '-B' , os.path.join(real_dir_path, 'images', 'download.py')])
+    subprocess.run(['pythonw', '-B', os.path.join(real_dir_path, 'images', 'download.py')])
     subprocess.run(['pythonw', '-B', os.path.join(real_dir_path, 'images', 'edit.py')])
     for victim in config('spam.victims'):
         subprocess.run(['pythonw', '-B' ,os.path.join(real_dir_path, 'spam.py'), victim])
