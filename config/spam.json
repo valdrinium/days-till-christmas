@@ -1,3 +1,8 @@
 {
-    "hidesWindow": true
+    "hidesWindow": true,
+    "victims": [
+        "Santa's Little Helper 😏",
+        "Monkey"
+    ],
+    "spamAt": "08:00"
 }

@@ -21,7 +21,7 @@ parser.add_argument('target')
 args = parser.parse_args()
 
 # Create the Chrome Selenium driver
-driver = webdriver.Chrome(r'C:\Program Files (x86)\Google\ChromeDriver\chromedriver.exe')
+driver = webdriver.Chrome(env('CHROMEDRIVER_PATH'))
 if config('spam.hidesWindow'):
     driver.set_window_position(-2000, -2000)
 
