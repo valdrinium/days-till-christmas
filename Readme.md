@@ -6,13 +6,16 @@ This collection of tiny scripts works like this:
 specifies which search query to perform and which image to download from the 
 list, according to the current index. The index gets incremented every time 
 the script is run, so it will always be a new high quality image.
+![](https://raw.githubusercontent.com/valdrinium/days-till-christmas/master/sample/original.jpg)
 0. Secondly, the script `edit.py` reads that image and edits it, using the 
 number of days left till Christmas, as given by https://days.to/until/christmas.
+The result will look similar to this (Romanian text):
+![](https://raw.githubusercontent.com/valdrinium/days-till-christmas/master/sample/edited.png)
 0. Thirdly, the script `spam.py` takes a contact name as an argument and sends 
-to it the previously edited image.
+to it the previously edited image using WhatsApp Web in Selenium.
 0. Lastly, the script `repeat.py` schedules the downloading, editing and 
 sending of a new image daily, at the time and to the contacts specified in 
-the `spam.jason` config file.
+the `spam.json` config file.
 
 # Requirements
 
@@ -51,6 +54,6 @@ to download, or the query in order to search for something else.
 
 1. Right click the `start.bat` file and create a shortcut.
 0. Press `Win+R`, type `shell:startup` and paste the shortcut in the folder that just 
-poped up.
+poped up and reboot.
 
 # Happy spamming! xD
