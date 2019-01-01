@@ -1,0 +1,6 @@
+{
+    "days_untill": {
+        "url": "https://days.to/until/",
+        "regex": "<div id=\"countdown-days\">(.*?)<\/div>"
+    }
+}
