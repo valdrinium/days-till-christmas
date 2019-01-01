@@ -5,7 +5,7 @@ import json
 def load_config(config_path):
     config = {}
     for file in os.listdir(config_path):
-        with open(os.path.join(config_path, file)) as f:
+        with open(os.path.join(config_path, file), 'rb') as f:
             config[os.path.splitext(file)[0]] = json.load(f)
 
     return config 
