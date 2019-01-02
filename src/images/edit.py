@@ -19,11 +19,10 @@ def write_container(image, center, text, font, fill, margin = (20, 20)):
     startY = int(drawCenterY - textHeight / 2 - marginY / 2)
     button_size = (int(textWidth + 2 * marginX), int(textHeight + 3 * marginY / 2))
 
-    ribbon_ratio = 262 / 168
-
     ribbon_path = path_to(os.path.join('assets', 'ribbon-red-l.png'))
     ribbon = Image.open(ribbon_path).convert('RGBA')
 
+    ribbon_ratio = ribbon.size[0] / ribbon.size[1]
     ribbon_size = (int(button_size[1] * ribbon_ratio), button_size[1])
     ribbon.thumbnail(ribbon_size, Image.ANTIALIAS)
 
@@ -32,6 +31,7 @@ def write_container(image, center, text, font, fill, margin = (20, 20)):
     ribbon_path = path_to(os.path.join('assets', 'ribbon-red-R.png'))
     ribbon = Image.open(ribbon_path).convert('RGBA')
 
+    ribbon_ratio = ribbon.size[0] / ribbon.size[1]
     ribbon_size = (int(button_size[1] * ribbon_ratio), button_size[1])
     ribbon.thumbnail(ribbon_size, Image.ANTIALIAS)
 
