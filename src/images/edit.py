@@ -4,8 +4,7 @@ import sys
 from datetime import date, datetime
 from PIL import Image, ImageFont, ImageDraw
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from src.parsers.quotes import get_quotes
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))\
 from src.utils.storage import path_to
 
 
