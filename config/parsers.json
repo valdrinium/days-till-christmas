@@ -2,5 +2,12 @@
     "days_untill": {
         "url": "https://days.to/until/",
         "regex": "<div id=\"countdown-days\">(.*?)<\/div>"
+    },
+    "quotes": {
+        "url": "http://www.quotedb.com/quote/quote.php?action=random_quote",
+        "regex": "document.write\\('(.*)'\\)",
+        "authors": {
+            "regex": "More quotes from (.*)'"
+        }
     }
 }

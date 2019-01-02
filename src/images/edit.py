@@ -1,10 +1,11 @@
 import os
 import sys
 
+from datetime import date, datetime
 from PIL import Image, ImageFont, ImageDraw
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from src.parsers.days_untill import get_days_untill
+from src.parsers.quotes import get_quotes
 from src.utils.storage import path_to
 
 
@@ -68,7 +69,10 @@ image = Image.open(image_path)
 
 imgWidth, imgHeight = image.size
 
-daysLeft = get_days_untill('christmas')
+daysLeft = (date(datetime.now().year, 12, 24) - date.today()).days
+if daysLeft < 0:
+    daysLeft = (date(datetime.now().year + 1, 12, 24) - date.today()).days
+
 daysText = str(daysLeft)
 if daysLeft % 100 >= 20 or daysLeft % 100 == 0:
     daysText += ' de'
@@ -105,8 +109,8 @@ texts = [
 ]
 
 if daysLeft == 0:
-    texts[0]['text'] = 'GATA, A VENIT'
-    texts[1]['text'] = '  Crăciunul  '
+    texts[0]['text'] = 'GATA, AZI VINE'
+    texts[1]['text'] = ' Moș Crăciun '
     texts[2]['text'] = 'Sper că ai fost cuminte'
 
 text_height = 0
