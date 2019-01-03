@@ -1,6 +1,16 @@
+# Motivation
+
+Do you also have that one friend who keeps talking about Christmas since 
+July and sends you pictures of how many days are left till December 24th 
+since November? Well then, you came to the right place ;)
+
+This collection `Python` scripts is here to inspire Christmas spirit daily 
+to those friends, with as little as 0 effort from your side.
+
 # Introduction
 
 This collection of tiny scripts works like this:
+
 1. Firstly, the script `download.py` downloads the next christmasy image from 
 <a href="https://unsplash.com">Unsplash</a>. The `images.json` config file 
 specifies which search query to perform and which image to download from the 
@@ -8,9 +18,26 @@ list, according to the current index. The index gets incremented every time
 the script is run, so it will always be a new high quality image.
 ![](https://raw.githubusercontent.com/valdrinium/days-till-christmas/master/sample/original.jpg)
 0. Secondly, the script `edit.py` reads that image and edits it, using the 
-number of days left till Christmas, as given by https://days.to/until/christmas.
-The result will look similar to this (Romanian text):
-![](https://raw.githubusercontent.com/valdrinium/days-till-christmas/master/sample/edited.png)
+number of days left till the date specified in the `edit.json` config file. 
+In addition, you must also specify which strings to put according to which 
+condition, based on the following format:
+    ```
+    [
+        ...
+        {
+            "condition": "gt",
+            "comparedTo": 25,
+            "value": [
+                "AU MAI RĂMAS DOAR",
+                "  :days ZILE  ",
+                "pănă la Crăciun"
+            ]
+        },
+        ...
+    ]
+    ```
+    The result will look similar to this (Romanian text):
+    ![](https://raw.githubusercontent.com/valdrinium/days-till-christmas/master/sample/edited.png)
 0. Thirdly, the script `spam.py` takes a contact name as an argument and sends 
 to it the previously edited image using WhatsApp Web in Selenium.
 0. Lastly, the script `repeat.py` schedules the downloading, editing and 
@@ -28,7 +55,7 @@ the `spam.json` config file.
     - `requests_futures`
 - `Google Chrome` & `Chrome Selenium Webdriver`
     - `chromedriver` downloadable from http://chromedriver.chromium.org/downloads
-- A phone that is permanently connected to the internet.
+- A phone that is connected to the internet.
 
 # Setup
 
@@ -45,10 +72,29 @@ in between `''`, for example: `'"WABrowserId"'`, or `'{"secret": "bundle"}'`.
 
 ## Config
 
-1. In `config/spam.json`, change the array of victims to match the exact name of your 
-contacts, or the time of the automated spam.
-0. In `config/images.json`, change the index to match the index of the photo you wish 
-to download, or the query in order to search for something else.
+In `config/spam.json`, you can configure:
+
+- `hidesWindow`: show/hide the Selenium window.
+- `victims`: the array of contact names to be spammed, exactly as they appear in 
+    WhatsApp Web.
+- `spamAt`: the hour of the daily spam, in 24-hour format.
+
+In `config/images.json`, you can configure:
+
+- `query`: the serach query to be performed on Unsplash when looking for a new image.
+- `index`: the index of the image to download from that search.
+- `perPage`: this, together with the `index`, helps determine the page that the image 
+    we have to download will be on.
+
+In `config/edit.json`, you can configure:
+
+- `targetDate`: specify the day and month (eg: `{ "day": 24, "month": 12 }`). We will 
+    then compute how many days are left till that date (be it this or next year).
+- `texts`: the array of objects that contain the text information neccessary to edit 
+    the photo. The program will compare the number of days left till `targetDate` with 
+    each object's `comparedTo` value, based on the `condition`. The texts corresponding 
+    to the first condition that holds true will apper in the edited image.
+
 
 ## Schedule on Startup
 
