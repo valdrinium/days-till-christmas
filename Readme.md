@@ -1,11 +1,11 @@
 # Motivation
 
-Do you also have that one friend who keeps talking about Christmas since 
-July and sends you pictures of how many days are left till December 24th 
-since November? Well then, you came to the right place ;)
+Do you also have that one friend 👪 who keeps talking about Christmas 🎅 since 
+July ☃️ and sends you pictures of how many days are left till December 24th 🎄 
+since November 🧦? Well then, you came to the right place 🎁 ;)
 
-This collection `Python` scripts is here to inspire Christmas spirit daily 
-to those friends, with as little as 0 effort from your side.
+This collection of `Python` scripts is here to inspire Christmas spirit 
+daily to those friends, with as little as `0 effort` from your side.
 
 # Introduction
 
@@ -13,9 +13,9 @@ This collection of tiny scripts works like this:
 
 1. Firstly, the script `download.py` downloads the next christmasy image from 
 <a href="https://unsplash.com">Unsplash</a>. The `images.json` config file 
-specifies which search query to perform and which image to download from the 
-list, according to the current index. The index gets incremented every time 
-the script is run, so it will always be a new high quality image.
+specifies which search query to perform and which image to download according 
+to the current index. The index gets incremented every time the script is run, 
+so it will always be a new high quality image.
 ![](https://raw.githubusercontent.com/valdrinium/days-till-christmas/master/sample/original.jpg)
 0. Secondly, the script `edit.py` reads that image and edits it, using the 
 number of days left till the date specified in the `edit.json` config file. 
