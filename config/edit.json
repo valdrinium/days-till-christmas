@@ -1,0 +1,62 @@
+{
+    "targetDate": {
+        "day": 24,
+        "month": 12
+    },
+    "texts": [
+        {
+            "condition": "gt",
+            "comparedTo": 25,
+            "value": [
+                "AU MAI RĂMAS DOAR",
+                "  :days ZILE  ",
+                "pănă la Crăciun"
+            ]
+        },
+        {
+            "condition": "eq",
+            "comparedTo": 14,
+            "value": [
+                "MAI AȘTEPTĂM DOAR",
+                "DOUĂ SĂPTĂMÂNI",
+                "pănă la Crăciun"
+            ]
+        },
+        {
+            "condition": "eq",
+            "comparedTo": 7,
+            "value": [
+                "MAI AȘTEPTĂM DOAR",
+                " O SĂPTĂMÂNĂ ",
+                "pănă la Crăciun"
+            ]
+        },
+        {
+            "condition": "gte",
+            "comparedTo": 2,
+            "value": [
+                "MAI SUNT NUMAI",
+                " :days ZILE ",
+                "pănă la Crăciun"
+            ]
+        },
+        {
+            "condition": "eq",
+            "comparedTo": 1,
+            "value": [
+                "HO HO HO, CHIAR",
+                "    MÂINE    ",
+                "va sosi Crăciunul"
+            ]
+        },
+        {
+            "condition": "eq",
+            "comparedTo": 0,
+            "value": [
+                "GATA, AZI VINE",
+                " Moș Crăciun ",
+                "Sper că ai fost cuminte!"
+            ]
+        }
+    ]
+}

@@ -5,6 +5,7 @@ from datetime import date, datetime
 from PIL import Image, ImageFont, ImageDraw
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from src.utils.config import config
 from src.utils.storage import path_to
 
 
@@ -68,18 +69,18 @@ image = Image.open(image_path)
 
 imgWidth, imgHeight = image.size
 
-daysLeft = (date(datetime.now().year, 12, 24) - date.today()).days
+day = config('edit.targetDate.day')
+month = config('edit.targetDate.month')
+daysLeft = (date(datetime.now().year, month, day) - date.today()).days
 if daysLeft < 0:
-    daysLeft = (date(datetime.now().year + 1, 12, 24) - date.today()).days
+    daysLeft = (date(datetime.now().year + 1, month, day) - date.today()).days
 
 daysText = str(daysLeft)
 if daysLeft % 100 >= 20 or daysLeft % 100 == 0:
     daysText += ' de'
-daysText += ' ZILE'
 
 texts = [
     {
-        'text': 'AU MAI RĂMAS DOAR',
         'font': 'Montserrat',
         'color': (255, 255, 255),
         'contour': True,
@@ -87,7 +88,6 @@ texts = [
         'top': 0
     },
     {
-        'text': daysText,
         'font': 'Montserrat',
         'color': (255, 255, 255),
         'contour': False,
@@ -98,7 +98,6 @@ texts = [
         }
     },
     {
-        'text': 'pănă la Crăciun',
         'font': 'Great Vibes',
         'color': (249, 62, 82),
         'contour': False,
@@ -107,10 +106,20 @@ texts = [
     }
 ]
 
-if daysLeft == 0:
-    texts[0]['text'] = 'GATA, AZI VINE'
-    texts[1]['text'] = ' Moș Crăciun '
-    texts[2]['text'] = 'Sper că ai fost cuminte'
+for textChoice in config('edit.texts'):
+    if textChoice['condition'] == 'eq':
+        if daysLeft != textChoice['comparedTo']:
+            continue
+    if textChoice['condition'] == 'gt':
+        if daysLeft <= textChoice['comparedTo']:
+            continue
+    if textChoice['condition'] == 'gte':
+        if daysLeft < textChoice['comparedTo']:
+            continue
+    
+    for i in range(3):
+        texts[i]['text'] = textChoice['value'][i].replace(':days', daysText)
+    break
 
 text_height = 0
 for text in texts:
