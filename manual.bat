@@ -1,0 +1,1 @@
+start pythonw.exe -B .\src\manual.py

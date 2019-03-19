@@ -1,3 +1,4 @@
+from src.utils.config import config
 import os
 import sys
 import re
@@ -5,8 +6,8 @@ import re
 from requests_futures.sessions import FuturesSession
 from html.parser import HTMLParser
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from src.utils.config import config
+sys.path.append(os.path.dirname(os.path.dirname(
+    os.path.dirname(os.path.abspath(__file__)))))
 
 
 class MLStripper(HTMLParser):
@@ -44,7 +45,7 @@ def get_quotes(num=10):
 
         regex = config('parsers.quotes.regex')
         text = result.content.decode('ISO-8859-1')
-        
+
         matches = re.findall(regex, text)
         if not matches or len(matches) < 1:
             continue

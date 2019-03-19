@@ -8,7 +8,7 @@ def load_config(config_path):
         with open(os.path.join(config_path, file), 'rb') as f:
             config[os.path.splitext(file)[0]] = json.load(f)
 
-    return config 
+    return config
 
 
 def find_config(filename='config', raise_error_if_not_found=True):
@@ -41,7 +41,7 @@ config_data = load_config(config_path)
 
 
 def config(path, value=None):
-    words = path.split('.');
+    words = path.split('.')
     if len(words) < 0:
         return None
 

@@ -34,7 +34,7 @@ storage_path = find_storage()
 
 def download(path, filename):
     if is_url(path):
-        filesystem_path =  os.path.join(storage_path, filename)
+        filesystem_path = os.path.join(storage_path, filename)
         os.makedirs(os.path.dirname(filesystem_path), exist_ok=True)
 
         urlretrieve(path, filesystem_path)
