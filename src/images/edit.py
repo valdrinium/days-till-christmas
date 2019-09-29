@@ -29,7 +29,7 @@ def write_container(image, center, text, font, fill, margin = (20, 20)):
 
     image.paste(ribbon, (startX - ribbon.size[0] + 40, startY + 20), ribbon)
 
-    ribbon_path = path_to(os.path.join('assets', 'ribbon-red-R.png'))
+    ribbon_path = path_to(os.path.join('assets', 'ribbon-red-r.png'))
     ribbon = Image.open(ribbon_path).convert('RGBA')
 
     ribbon_ratio = ribbon.size[0] / ribbon.size[1]
@@ -116,7 +116,7 @@ for textChoice in config('edit.texts'):
     if textChoice['condition'] == 'gte':
         if daysLeft < textChoice['comparedTo']:
             continue
-    
+
     for i in range(3):
         texts[i]['text'] = textChoice['value'][i].replace(':days', daysText)
     break

@@ -1,3 +1,4 @@
+#coding=utf-8
 import os
 
 from time import sleep
@@ -5,6 +6,7 @@ from random import randint
 from argparse import ArgumentParser
 
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
@@ -21,9 +23,13 @@ parser.add_argument('target')
 args = parser.parse_args()
 
 # Create the Chrome Selenium driver
-driver = webdriver.Chrome(env('CHROMEDRIVER_PATH'))
-if config('spam.hidesWindow'):
-    driver.set_window_position(-2000, -2000)
+options = webdriver.ChromeOptions()
+options.add_argument('--headless')
+options.add_argument('--no-sandbox')
+options.add_argument('--disable-dev-shm-usage')
+options.add_argument("--window-size=1920,1080")
+options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36")
+driver = webdriver.Chrome(env('CHROMEDRIVER_PATH'), options=options)
 
 # Access WhatsApp Web for the first time to configure the storage
 driver.get(env('WHATSAPP_WEB_URL'))
@@ -41,8 +47,12 @@ driver.refresh()
 # Note that the content in the site is genertated dynamically by the JS engine
 wait = WebDriverWait(driver, randint(60, 180) * 1000)
 
+# Debugging purposes
+# driver.get_screenshot_as_file("capture.png")
+
 # Waits for the desired contact to load and selects it
 targetXpath = '//span[contains(@title,"' + args.target + '")]'
+print(targetXpath)
 targetContact = wait.until(EC.presence_of_element_located((By.XPATH, targetXpath)))
 
 sleep(randint(2, 4))
@@ -67,7 +77,7 @@ captionXpath = '//div[@class="_3F6QL bsmJe _1ZxJu focused"]/div[@class="_2S1VP c
 captionInput = wait.until(EC.presence_of_element_located((By.XPATH, captionXpath)))
 
 sleep(randint(2, 4))
-captionInput.send_keys(f'Crăciunul se apropie cu pași repezi')
+captionInput.send_keys('Crăciunul se apropie cu pași repezi')
 
 # Specifies the location of the send button in the page
 sendXpath = '//div[@role="button"][@class="_3hV1n yavlE"]'
