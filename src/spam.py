@@ -47,12 +47,8 @@ driver.refresh()
 # Note that the content in the site is genertated dynamically by the JS engine
 wait = WebDriverWait(driver, randint(60, 180) * 1000)
 
-# Debugging purposes
-# driver.get_screenshot_as_file("capture.png")
-
 # Waits for the desired contact to load and selects it
 targetXpath = '//span[contains(@title,"' + args.target + '")]'
-print(targetXpath)
 targetContact = wait.until(EC.presence_of_element_located((By.XPATH, targetXpath)))
 
 sleep(randint(2, 4))
@@ -72,15 +68,12 @@ imageInput = wait.until(EC.presence_of_element_located((By.XPATH, inputXpath)))
 sleep(randint(2, 4))
 imageInput.send_keys(path_to(os.path.join('images', 'today.png')))
 
-# Specifies the location of the caption input field in the page
-captionXpath = '//div[@class="_3F6QL bsmJe _1ZxJu focused"]/div[@class="_2S1VP copyable-text selectable-text"]'
-captionInput = wait.until(EC.presence_of_element_located((By.XPATH, captionXpath)))
-
-sleep(randint(2, 4))
-captionInput.send_keys('Crăciunul se apropie cu pași repezi')
+# Debugging
+# sleep(randint(2, 4))
+# driver.get_screenshot_as_file("capture.png")
 
 # Specifies the location of the send button in the page
-sendXpath = '//div[@role="button"][@class="_3hV1n yavlE"]'
+sendXpath = '//div[@role="button" and descendant::span[@data-icon="send-light"]]'
 sendButton = wait.until(EC.presence_of_element_located((By.XPATH, sendXpath)))
 
 sleep(randint(2, 4))
